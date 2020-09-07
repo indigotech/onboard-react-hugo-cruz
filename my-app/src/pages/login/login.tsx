@@ -3,25 +3,31 @@ import React from 'react';
 export class Login extends React.Component {
   render() {
     return (
-      <div className="Login">
-        <h1 className="Title">Bem-vindo(a) à Taqtile!</h1>
-        <form>
-          <label> E-mail: </label><br />
-          <input 
-            type="text"
-            name="email" 
-          /><br />
-          <label> Senha: </label><br />
-          <input 
-            type="text"
-            name="password" 
-          /><br />
-          <button
-            type="submit"
-            className="Button"
-          > 
+      <div className="Container">
+        <div className="Header">
+          <h1>Bem-vindo(a) à Taqtile!</h1>
+        </div>
+        <form className="Login" id="login">
+          <div className="FormControl">
+            <label>E-mail:</label>
+            <input 
+              type="text"
+              id="email" 
+            />
+          </div>
+          <div className="FormControl">
+            <label>Senha:</label>
+            <input 
+              type="text" 
+              id="password" 
+            />
+          </div>
+          <button 
+            type="submit" 
+            className="FormButton"
+          >
             Entrar 
-          </button><br />
+          </button>
         </form>
       </div>
     );
