@@ -1,6 +1,19 @@
 import React from 'react';
 
-export class Login extends React.Component {
+interface LoginState {
+  email: string;
+  password: string;
+}
+
+export class Login extends React.Component<{}, LoginState> {
+
+  state: LoginState = { email: '', password: '' };
+ 
+  private  handleInput = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value } as Pick<LoginState, keyof LoginState>);
+  }
+
   render() {
     return (
       <div className="container">
@@ -13,6 +26,8 @@ export class Login extends React.Component {
             <input 
               type="text"
               name="email" 
+              value={this.state.email} 
+              onChange={this.handleInput}
             />
           </div>
           <div className="formControl">
@@ -20,11 +35,14 @@ export class Login extends React.Component {
             <input 
               type="text" 
               name="password" 
+              value={this.state.password} 
+              onChange={this.handleInput}
             />
           </div>
           <button 
             type="submit" 
             className="formButton"
+            //onClick={this.handleButtonClick}
           >
             Entrar 
           </button>
