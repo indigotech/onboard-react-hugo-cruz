@@ -8,10 +8,30 @@ interface LoginState {
 export class Login extends React.Component<{}, LoginState> {
 
   state: LoginState = { email: '', password: '' };
+
+  validateEmail(email: string): boolean {
+    const regex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
+    return regex.test(email);
+  }
+
+  validatePassword(password: string): boolean {
+    const regex = /(?=.*\d)(?=.*[a-zA-Z]).*$/;
+    return password.length > 6 && regex.test(password);
+  }
  
-  private  handleInput = (e: React.ChangeEvent<HTMLInputElement>) =>{
+  private  handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value } as Pick<LoginState, keyof LoginState>);
+  }
+
+  private  handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (!this.validateEmail(this.state.email)) {
+      alert('Email inválido')
+    } 
+    
+    if (!this.validatePassword(this.state.password)) {
+      alert('Senha inválida')
+    } 
   }
 
   render() {
@@ -42,7 +62,7 @@ export class Login extends React.Component<{}, LoginState> {
           <button 
             type="submit" 
             className="formButton"
-            //onClick={this.handleButtonClick}
+            onClick={this.handleButtonClick}
           >
             Entrar 
           </button>
