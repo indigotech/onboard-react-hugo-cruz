@@ -19,12 +19,12 @@ export class Login extends React.Component<{}, LoginState> {
     return password.length > 6 && regex.test(password);
   }
  
-  private  handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  private handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value } as Pick<LoginState, keyof LoginState>);
   }
 
-  private  handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  private handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!this.validateEmail(this.state.email)) {
       alert('Email inválido')
     } 
