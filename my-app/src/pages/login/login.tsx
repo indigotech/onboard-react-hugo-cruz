@@ -7,16 +7,22 @@ interface LoginState {
 
 export class Login extends React.Component<{}, LoginState> {
 
-  state: LoginState = { email: '', password: '' };
+  constructor (props: any) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    }
+  }
 
   validateEmail(email: string): boolean {
-    const regex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
-    return regex.test(email);
+    const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
+    return emailRegex.test(email);
   }
 
   validatePassword(password: string): boolean {
-    const regex = /(?=.*\d)(?=.*[a-zA-Z]).*$/;
-    return password.length > 6 && regex.test(password);
+    const passwordRegex = /(?=.*\d)(?=.*[a-zA-Z]).*$/;
+    return password.length > 6 && passwordRegex.test(password);
   }
  
   private handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
