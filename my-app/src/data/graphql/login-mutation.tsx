@@ -1,15 +1,11 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { client } from './client';
 
-const client = new ApolloClient({
-  uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
-  cache: new InMemoryCache()
-});
-
-export const loginMutation = (email: string, password: string) => {
-  client.mutate({
+export const loginMutation = (email: string, password: string): Promise<any> => {
+  return client.mutate({
     mutation: gql`
-      mutation Login($data:LoginInputType!){
-        login(data: $data){
+      mutation Login ($data:LoginInputType!) {
+        login (data: $data) {
           token
           user {
             id
@@ -27,7 +23,3 @@ export const loginMutation = (email: string, password: string) => {
     },
   })
 };
-
-export function saveToken (token: string) {
-  localStorage.setItem("token", token);
-} 
