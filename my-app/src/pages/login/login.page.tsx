@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface LoginState {
+interface LoginPageState {
   email: string;
   password: string;
 }
 
-export class Login extends React.Component<{}, LoginState> {
+export class LoginPage extends React.Component<{}, LoginPageState> {
 
   constructor (props: any) {
     super(props);
@@ -27,7 +27,7 @@ export class Login extends React.Component<{}, LoginState> {
  
   private handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
-    this.setState({ [name]: value } as Pick<LoginState, keyof LoginState>);
+    this.setState({ [name]: value } as Pick<LoginPageState, keyof LoginPageState>);
   }
 
   private handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
